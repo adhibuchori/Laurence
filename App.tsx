@@ -1,4 +1,5 @@
-import { createTamagui, TamaguiProvider } from 'tamagui';
+import React from 'react';
+import {createTamagui, TamaguiProvider} from 'tamagui';
 import {defaultConfig} from '@tamagui/config/v4';
 import {NavigationContainer} from '@react-navigation/native';
 import RootStack from './src/navigation/RootStack';

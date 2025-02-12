@@ -1,8 +1,7 @@
 import {StyleSheet} from 'react-native';
-import Typgrahpy from '../../../assets/styles/typography/Typography';
-import LetterSpacing from '../../../assets/styles/typography/LetterSpacing';
-import FontWeight from '../../../assets/styles/typography/FontWeight';
 import Typography from '../../../assets/styles/typography/Typography';
+import FontFamily from '../../../assets/styles/typography/FontFamily';
+import LetterSpacing from '../../../assets/styles/typography/LetterSpacing';
 import Colors from '../../../assets/styles/Colors';
 
 const styles = StyleSheet.create({
@@ -21,12 +20,13 @@ const styles = StyleSheet.create({
     height: 150,
   },
   title: {
-    ...Typgrahpy.displayMedium,
+    ...Typography.displayMedium,
+    fontFamily: FontFamily.museoModernoBold.fontFamily,
     marginTop: 20,
     color: Colors.neutral800.color,
   },
   subTitle: {
-    ...Typgrahpy.bodyMedium,
+    ...Typography.bodyMedium,
     textAlign: 'center',
     marginTop: 15,
     width: 270,
@@ -34,9 +34,8 @@ const styles = StyleSheet.create({
     color: Colors.neutral600.color,
   },
   footer: {
-    ...Typgrahpy.caption,
+    ...Typography.caption,
     ...LetterSpacing.normal,
-    ...FontWeight.regular,
     position: 'absolute',
     bottom: 0,
     marginBottom: 16,
