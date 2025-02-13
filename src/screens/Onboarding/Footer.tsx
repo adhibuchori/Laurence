@@ -13,7 +13,7 @@ type OnboardingScreenNavigationProp = StackNavigationProp<
   'Onboarding'
 >;
 
-type FooterProps = {
+type Props = {
   currentSlideIndex: number;
   slides: { id: string; image: any; title: string; subTitle: string }[];
   skip: () => void;
@@ -27,7 +27,7 @@ const Footer = ({
   skip,
   goToNextSlide,
   navigation,
-}: FooterProps) => {
+}: Props) => {
   return (
     <View style={styles.footerContainer}>
       <View style={styles.indicatorContainer}>

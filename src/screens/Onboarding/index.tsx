@@ -1,7 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useRef, useState } from 'react';
 import {
-  Image,
   FlatList,
   View,
   Text,
@@ -12,20 +11,23 @@ import {
 } from 'react-native';
 import styles from './styles';
 import Footer from './Footer';
+import OnboardingVector01 from '../../../assets/vectors/onboarding_01.svg';
+import OnboardingVector02 from '../../../assets/vectors/onboarding_02.svg';
+
 
 const { width, height } = Dimensions.get('window');
 
 const slides = [
   {
     id: '1',
-    image: require('../../../assets/images/onboarding_01.png'),
+    image: OnboardingVector01,
     title: 'Find Your Best Friend',
     subTitle:
       'Adopt a pet and give them a loving home. Every adoption is a new beginning!',
   },
   {
     id: '2',
-    image: require('../../../assets/images/onboarding_02.png'),
+    image: OnboardingVector02,
     title: 'Give Them Freedom & Love',
     subTitle:
       'Rescue, adopt, and care. Every pet deserves a second chance and a forever home.',
@@ -45,7 +47,7 @@ type SlideProps = {
 const Slide = ({ item }: SlideProps) => {
   return (
     <View style={styles.slideContainer}>
-      <Image source={item?.image} style={styles.image} />
+      <item.image source={item?.image} style={styles.image} />
       <View>
         <Text style={styles.title}>{item?.title}</Text>
         <Text style={styles.subTitle}>{item?.subTitle}</Text>
