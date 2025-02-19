@@ -16,7 +16,7 @@ type SplashScreenNavigationProp = StackNavigationProp<
 >;
 
 interface Props {
-  navigation: SplashScreenNavigationProp;
+  readonly navigation: SplashScreenNavigationProp;
 }
 
 function SplashScreen({ navigation }: Props) {

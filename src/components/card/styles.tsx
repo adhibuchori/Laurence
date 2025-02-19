@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginTop: 4,
   },
+  toggleFavorite: {
+    position: 'absolute',
+    right: 24,
+    top: 8,
+  },
 });
 
 export default styles;

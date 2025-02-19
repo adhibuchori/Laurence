@@ -43,7 +43,22 @@ const styles = StyleSheet.create({
   },
   paddingContentContainerBottom: {
     paddingBottom: 16,
-  }
+  },
+  snackbarText: {
+    ...Typography.caption,
+    ...Colors.neutral100,
+    marginLeft: 8,
+  },
+  snackbarPetNameText: {
+    fontWeight: 'bold',
+    ...Colors.neutral100,
+  },
+  snackbarContainer: {
+    borderRadius: 100,
+    paddingHorizontal: 4,
+    marginHorizontal: 16,
+    marginBottom: 16,
+  },
 });
 
 export default styles;

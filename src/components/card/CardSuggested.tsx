@@ -1,11 +1,13 @@
-import React from 'react';
-import {Text, YStack, XStack, Image, Card, View} from 'tamagui';
+import React, {useState} from 'react';
+import {Text, YStack, XStack, Image, Card, View, Button} from 'tamagui';
 import Colors from '../../../assets/styles/Colors';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import CatIcon from '../../../assets/icons/ic_cat.svg';
 import DogIcon from '../../../assets/icons/ic_dog.svg';
+import FavoriteIcon from '../../../assets/icons/ic_favorite.svg';
+import UnfavoriteIcon from '../../../assets/icons/ic_unfavorite.svg';
 
 type RootStackParamList = {
   Detail: undefined;
@@ -22,6 +24,8 @@ type CardSuggestedProps = {
   petImage: any;
   petName: string;
   petType: string;
+  isFavorite: boolean;
+  onFavoritePress: (snackbarFavorite: boolean) => void;
 };
 
 function CardSuggested({
@@ -30,11 +34,32 @@ function CardSuggested({
   petImage,
   petName,
   petType,
+  isFavorite: initialFavorite,
+  onFavoritePress,
 }: CardSuggestedProps) {
   const navigation = useNavigation<CardSuggestedNavigationProp>();
+  const [isFavorite, setIsFavorite] = useState(initialFavorite);
 
   const handlePress = () => {
     navigation.navigate('Detail');
+  };
+
+  const toggleFavorite = () => {
+    setIsFavorite(prev => {
+      const snackbarFavorite = !prev;
+      onFavoritePress(snackbarFavorite);
+      return snackbarFavorite;
+    });
+  };
+
+  const getPetIcon = () => {
+    if (petType === 'Dog') {
+      return <DogIcon width={16} height={16} />;
+    }
+    if (petType === 'Cat') {
+      return <CatIcon width={16} height={16} />;
+    }
+    return null;
   };
 
   return (
@@ -51,13 +76,33 @@ function CardSuggested({
           <Text style={styles.petOwnerInfoText}>Pet Owner</Text>
         </YStack>
       </XStack>
-      <Image
-        source={petImage}
-        width={168}
-        height={150}
-        borderRadius={8}
-        marginHorizontal={16}
-      />
+      <View position="relative">
+        <Image
+          source={petImage}
+          width={168}
+          height={150}
+          borderRadius={8}
+          marginHorizontal={16}
+        />
+        <Button
+          onPress={toggleFavorite}
+          style={styles.toggleFavorite}
+          pressStyle={styles.pressButtonScale}
+          unstyled>
+          <View
+            width={30}
+            height={30}
+            backgroundColor="#FFEEF0"
+            padding={7}
+            borderRadius={100}>
+            {isFavorite ? (
+              <FavoriteIcon width={16} height={16} />
+            ) : (
+              <UnfavoriteIcon width={16} height={16} />
+            )}
+          </View>
+        </Button>
+      </View>
       <XStack justifyContent="space-between" alignItems="center">
         <Text
           style={styles.petNameDataText}
@@ -65,12 +110,12 @@ function CardSuggested({
           marginVertical={16}>
           {petName}
         </Text>
-        <View marginRight={16} backgroundColor={Colors.secondary100.color} padding={4} borderRadius={6}>
-          {petType === 'Dog' ? (
-            <DogIcon width={16} height={16} />
-          ) : petType === 'Cat' ? (
-            <CatIcon width={16} height={16} />
-          ) : null}
+        <View
+          marginRight={16}
+          backgroundColor={Colors.secondary100.color}
+          padding={4}
+          borderRadius={6}>
+          {getPetIcon()}
         </View>
       </XStack>
     </Card>
